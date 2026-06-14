@@ -1,5 +1,36 @@
-from tkinter import *
-window = Tk() # instantiate an instance of a window
-window.geometry("420x420")
-window.mainloop() # place window on computer screen, listen for events
+import tkinter as tk
 
+root = tk.Tk()
+root.title("Calculator")
+root.geometry("400x600")
+
+frame = tk.Frame(root)
+frame.pack(expand=True, fill="both")
+
+for r in range(6):
+    frame.grid_rowconfigure(r, weight=1)
+
+for c in range(4):
+    frame.grid_columnconfigure(c, weight=1)
+
+# First column: one cell spanning all 6 rows
+left_cell = tk.Frame(
+    frame,
+    bg="black",
+    highlightbackground="white",
+    highlightthickness=1
+)
+left_cell.grid(row=0, column=0, columnspan=6, sticky="nsew")
+
+# Remaining columns: normal grid
+for r in range(1,6):
+    for c in range(0, 4):
+        cell = tk.Frame(
+            frame,
+            bg="black",
+            highlightbackground="white",
+            highlightthickness=1
+        )
+        cell.grid(row=r, column=c, sticky="nsew")
+
+root.mainloop()
